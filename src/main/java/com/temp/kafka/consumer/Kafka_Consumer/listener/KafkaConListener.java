@@ -1,6 +1,5 @@
 package com.temp.kafka.consumer.Kafka_Consumer.listener;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.temp.kafka.consumer.Kafka_Consumer.service.MessageProcessor;
 import lombok.AllArgsConstructor;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
@@ -16,7 +15,7 @@ public class KafkaConListener {
     private final MessageProcessor messageProcessor;
 
     @KafkaListener(topics = NEW_TOPIC)
-    public void consumeRecord(ConsumerRecord<Integer,String> record) throws JsonProcessingException {
+    public void consumeRecord(ConsumerRecord<Integer,String> record)  {
         messageProcessor.processor(record);
     }
 

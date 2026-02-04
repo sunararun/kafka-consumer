@@ -1,7 +1,6 @@
 package com.temp.kafka.consumer.Kafka_Consumer.listener;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.temp.kafka.consumer.Kafka_Consumer.pojo.Product;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -14,14 +13,14 @@ import org.springframework.kafka.listener.MessageListenerContainer;
 import org.springframework.kafka.test.EmbeddedKafkaBroker;
 import org.springframework.kafka.test.context.EmbeddedKafka;
 import org.springframework.kafka.test.utils.ContainerTestUtils;
+import tools.jackson.databind.ObjectMapper;
 
 import java.util.concurrent.ExecutionException;
 
 import static com.temp.kafka.consumer.Kafka_Consumer.constant.KafkaConstant.NEW_TOPIC;
 import static com.temp.kafka.consumer.Kafka_Consumer.constant.ProductStatus.AVAILABLE;
-import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-@EmbeddedKafka(topics = NEW_TOPIC,ports = 9092)
+@EmbeddedKafka(topics = NEW_TOPIC,ports = 9092,partitions = 3)
 class CustomKafkaListenerTest {
     @Autowired
     private KafkaTemplate<Integer,String> kafkaTemplate;
